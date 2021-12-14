@@ -122,7 +122,7 @@ $ aws configure
 $ mkdir terraform-aws && cd terraform-aws && touch main.tf
 ```
 
-- Install the HashiCorp Terraform extension in VSCode.
+- Install the `HashiCorp Terraform` extension in VSCode.
 
 - Create a file named `main.tf` for the configuration code and copy and paste the following content. 
 
@@ -400,6 +400,8 @@ terraform apply -auto-approve
 
 - Go to the AWS console, check the S3 bucket. Then check the `terraform.tfstate` and `terraform.tfstate.backup` file.
 
+- Now we will use `terraform plan -out namewhateveryouwant`. This command will create an execution plan and it will save it in a file. It will be a binary file. Lets comment the EC2 instance resource block.
+
 ```bash
 terraform plan -out=justs3
 ```
@@ -407,4 +409,13 @@ terraform plan -out=justs3
 
 ```bash
 terraform apply justs3
+```
+
+### Destroy
+
+The `terraform destroy` command terminates resources defined in your Terraform configuration. This command is the reverse of terraform apply in that it terminates all the resources specified by the configuration. It does not destroy resources running elsewhere that are not described in the current configuration. 
+
+
+```bash
+terraform destroy
 ```
