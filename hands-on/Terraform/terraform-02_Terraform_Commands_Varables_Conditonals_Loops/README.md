@@ -557,7 +557,7 @@ terraform plan
 
 ```bash
 variable "users" {
-  default = ["spring", "micheal", "oliver"]
+  default = ["santino", "michael", "fredo"]
 }
 ```
 
@@ -570,7 +570,7 @@ resource "aws_s3_bucket" "tf-s3" {
   # count = var.num_of_buckets
   # count = var.num_of_buckets != 0 ? var.num_of_buckets : 1
   for_each = toset(var.users)
-  bucket   = "example-s3-bucket-${each.value}"
+  bucket   = "example-tf-s3-bucket-${each.value}"
 }
 
 resource "aws_iam_user" "new_users" {
