@@ -247,7 +247,7 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "3.68.0"
+      version = "3.38.0"
     }
   }
 }
@@ -266,7 +266,8 @@ resource "aws_instance" "instance" {
   }
 
   provisioner "local-exec" {
-    command = "echo http://${aws_instance.instance.public_ip} > public_ip.txt"
+      command = "echo http://${self.public_ip} > public_ip.txt"
+  
   }
 
   connection {
@@ -275,7 +276,6 @@ resource "aws_instance" "instance" {
     user = "ec2-user"
     private_key = file("~/oliver.pem")
   }
-
 
   provisioner "remote-exec" {
     inline = [
@@ -286,7 +286,7 @@ resource "aws_instance" "instance" {
   }
 
   provisioner "file" {
-    content = aws_instance.instance.public_ip
+    content = self.public_ip
     destination = "/home/ec2-user/my_public_ip.txt"
   }
 
@@ -306,17 +306,17 @@ resource "aws_security_group" "tf-sec-gr" {
   }
 
   ingress {
-    from_port   = 22
-    protocol    = "tcp"
-    to_port     = 22
-    cidr_blocks = ["0.0.0.0/0"]
+      from_port = 22
+      protocol = "tcp"
+      to_port = 22
+      cidr_blocks = [ "0.0.0.0/0" ]
   }
 
   egress {
-    from_port   = 0
-    protocol    = -1
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
+      from_port = 0
+      protocol = -1
+      to_port = 0
+      cidr_blocks = [ "0.0.0.0/0" ]
   }
 }
 ```
