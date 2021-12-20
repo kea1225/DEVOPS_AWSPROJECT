@@ -188,7 +188,9 @@ terraform destroy -auto-approve
   4. Review the Terraform plan to ensure the configuration matches the expected state and infrastructure.
   5. Apply the configuration to update your Terraform state.
 
-- First, go to the AWS console and create a security group name `tf-import-sg`, two EC2 instances one's ami is `Amazon Linux 2` and the other is `Ubuntu 20.04`. Their tags will be `aws-linux-2`, `ubuntu-20.04` and `tf-import-sg`. Write `terraform import security group` to Security Group description.
+- First, go to the AWS console and create a security group name `tf-import-sg` and add tcp 22 (ssh) and tcp 80 (http) ports. Write `terraform import security group` to Security Group description. 
+
+- Create two EC2 instances one's ami is `Amazon Linux 2` and the other is `Ubuntu 20.04`. Their tags will be `Name=aws-linux-2`, `Name=ubuntu-20.04` and `Name=tf-import-sg`.  Attach security group to these instances.
 
 - Create a folder name `learn-terraform-import` and enter the directory.
 
