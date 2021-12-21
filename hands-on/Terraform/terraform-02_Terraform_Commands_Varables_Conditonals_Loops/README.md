@@ -520,6 +520,14 @@ resource "aws_s3_bucket" "tf-s3" {
 }
 ```
 
+- Comment the following output.
+
+```bash
+#  output "tf-example-s3" {
+#   value = aws_s3_bucket.tf-s3[*]
+# }
+```
+
 ```bash
 terraform plan
 ```
